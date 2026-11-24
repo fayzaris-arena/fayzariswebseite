@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mein Shop</title>
+  <meta name="description" content="Willkommen in unserem Online-Shop.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231f3a5f'/></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/daten.js" defer></script>
+  <script src="assets/js/shop.js" defer></script>
+</head>
+<body>
+  <div id="kopf"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__innen">
+        <div>
+          <h1>Ausgewählte Produkte für jeden Tag</h1>
+          <p>Hier steht ein kurzer, einladender Satz, der erklärt, was deinen Shop besonders macht.</p>
+          <div class="hero__knoepfe">
+            <a class="btn" href="produkte.html">Jetzt entdecken</a>
+            <a class="btn btn--rahmen" href="ueber-uns.html">Über uns</a>
+          </div>
+        </div>
+        <div class="hero__bild">
+          <svg viewBox="0 0 600 450" role="img" aria-label="Platzhalterbild" preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="450" fill="#dfe6ee"/>
+            <circle cx="420" cy="140" r="90" fill="#fff" fill-opacity=".5"/>
+            <rect x="80" y="230" width="260" height="160" rx="16" fill="#1f3a5f" fill-opacity=".15"/>
+            <rect x="300" y="280" width="200" height="110" rx="16" fill="#e0a458" fill-opacity=".35"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt">
+      <div class="container">
+        <div class="vorteile">
+          <div class="vorteil"><div class="vorteil__icon" aria-hidden="true">🚚</div><h3>Schneller Versand</h3><p class="leise">Lieferung in 2–4 Werktagen</p></div>
+          <div class="vorteil"><div class="vorteil__icon" aria-hidden="true">↩️</div><h3>30 Tage Rückgabe</h3><p class="leise">Unkompliziert zurücksenden</p></div>
+          <div class="vorteil"><div class="vorteil__icon" aria-hidden="true">🔒</div><h3>Sicher einkaufen</h3><p class="leise">Verschlüsselte Verbindung</p></div>
+          <div class="vorteil"><div class="vorteil__icon" aria-hidden="true">💬</div><h3>Persönlicher Service</h3><p class="leise">Wir sind für dich da</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt abschnitt--flaeche">
+      <div class="container">
+        <div class="raster-kopf">
+          <h2>Beliebte Produkte</h2>
+          <a href="produkte.html">Alle ansehen →</a>
+        </div>
+        <div class="produkt-raster" data-produkt-raster data-limit="4"></div>
+      </div>
+    </section>
+
+    <section class="abschnitt">
+      <div class="container zwei-spalten" style="align-items:center">
+        <div class="hero__bild">
+          <svg viewBox="0 0 600 450" role="img" aria-label="Platzhalterbild" preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="450" fill="#efe6da"/>
+            <circle cx="300" cy="225" r="120" fill="#fff" fill-opacity=".5"/>
+          </svg>
+        </div>
+        <div>
+          <h2>Unsere Geschichte</h2>
+          <p class="leise">Ein paar Sätze darüber, wer hinter dem Shop steht, woher die Idee kommt und was euch wichtig ist.</p>
+          <a class="btn btn--rahmen" href="ueber-uns.html">Mehr erfahren</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="abschnitt abschnitt--flaeche">
+      <div class="container text-mitte schmal">
+        <h2>Newsletter</h2>
+        <p class="leise">Neuigkeiten und Angebote direkt in dein Postfach.</p>
+        <form class="newsletter" data-platzhalter="Newsletter ist noch nicht verbunden.">
+          <input type="email" placeholder="Deine E-Mail-Adresse" aria-label="E-Mail-Adresse" required>
+          <button class="btn" type="submit">Anmelden</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="fuss"></div>
+</body>
+</html>

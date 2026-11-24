@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontakt – Mein Shop</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231f3a5f'/></svg>">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/daten.js" defer></script>
+  <script src="assets/js/shop.js" defer></script>
+</head>
+<body>
+  <div id="kopf"></div>
+
+  <main>
+    <section class="abschnitt">
+      <div class="container zwei-spalten">
+        <div>
+          <h1>Kontakt</h1>
+          <p class="leise">Du hast eine Frage zu einem Produkt oder deiner Bestellung? Schreib uns – wir melden uns so schnell wie möglich.</p>
+          <p><strong>E-Mail</strong><br><a data-shop-email href="mailto:kontakt@example.com">kontakt@example.com</a></p>
+          <p><strong>Telefon</strong><br><span data-shop-telefon>+49 000 000000</span></p>
+          <p><strong>Adresse</strong><br><span data-shop-adresse>Musterstraße 1, 12345 Musterstadt</span></p>
+        </div>
+        <form class="formular" data-platzhalter="Das Formular ist noch nicht verbunden. Bitte schreib uns per E-Mail.">
+          <div><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+          <div><label for="email">E-Mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div><label for="betreff">Betreff</label><input id="betreff" name="betreff"></div>
+          <div><label for="nachricht">Nachricht</label><textarea id="nachricht" name="nachricht" rows="6" required></textarea></div>
+          <p class="leise" style="font-size:.85rem;margin:0">Mit dem Absenden stimmst du der Verarbeitung deiner Angaben gemäß unserer <a href="datenschutz.html">Datenschutzerklärung</a> zu.</p>
+          <div><button class="btn" type="submit">Nachricht senden</button></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="fuss"></div>
+</body>
+</html>
