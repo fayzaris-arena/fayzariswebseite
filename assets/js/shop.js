@@ -153,6 +153,7 @@ function baueLayout() {
                 <li><a href="datenschutz.html">Datenschutz</a></li>
                 <li><a href="agb.html">AGB</a></li>
                 <li><a href="widerruf.html">Widerrufsbelehrung</a></li>
+                <li><a class="btn btn--klein" style="background:var(--farbe-akzent);border-color:var(--farbe-akzent);color:#000;margin-top:.4rem" href="widerruf.html#widerrufen">Bestellung widerrufen</a></li>
               </ul>
             </div>
           </div>
