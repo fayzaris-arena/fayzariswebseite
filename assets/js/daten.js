@@ -5,11 +5,11 @@
    Ohne Bild wird automatisch ein Platzhalter in "farbe" gezeichnet.
    ========================================================= */
 const SHOP = {
-  name: "Mein Shop",
+  name: "Fayzaris-Arena",
   ankuendigung: "Kostenloser Versand ab 50 € · 30 Tage Rückgabe",
-  email: "kontakt@example.com",
-  telefon: "+49 000 000000",
-  adresse: "Musterstraße 1, 12345 Musterstadt",
+  email: "fayzaris@outlook.de",
+  telefon: "+49 176 32699321",
+  adresse: "Britzer Damm 148, 12347 Berlin",
   waehrung: "EUR",
   versandkosten: 4.95,
   versandkostenfreiAb: 50
