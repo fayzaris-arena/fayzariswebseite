@@ -125,7 +125,7 @@ function baueLayout() {
               </ul>
             </div>
           </div>
-          <div class="fuss__unten">Alle Preise inkl. MwSt.</div>
+          <div class="fuss__unten">Fayzaris-Arena · Alle Preise inkl. MwSt.</div>
         </div>
       </footer>`;
   }
