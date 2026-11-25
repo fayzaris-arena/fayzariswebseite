@@ -6,15 +6,47 @@
 const NAV = [
   { href: "index.html", text: "Start" },
   { href: "produkte.html", text: "Produkte" },
-  { href: "ueber-uns.html", text: "Über uns" },
+  { href: "ueber-uns.html", text: "Über Fayzaris Arena" },
   { href: "kontakt.html", text: "Kontakt" }
 ];
+
+/* ---------- Lieferländer (ISO-Codes, Namen kommen automatisch auf Deutsch) ---------- */
+const LAENDER_CODES = (
+  "AD AE AF AG AI AL AM AO AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BW BY BZ " +
+  "CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG EH ER ES ET FI FJ FK FM FO FR " +
+  "GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GT GU GW GY HK HN HR HT HU ID IE IM IN IQ IR IS IT JE JM JO JP " +
+  "KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ " +
+  "NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW " +
+  "SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TG TH TJ TK TL TM TN TO TR TT TV TW TZ " +
+  "UA UG US UY UZ VA VC VE VG VI VN VU WF WS YE YT ZA ZM ZW"
+).split(" ");
+const LAND_SCHLUESSEL = "lieferland";
+
+function landLaden() {
+  try {
+    const c = localStorage.getItem(LAND_SCHLUESSEL);
+    if (c && LAENDER_CODES.includes(c)) return c;
+  } catch {}
+  return "DE";
+}
+function landSpeichern(code) {
+  try { localStorage.setItem(LAND_SCHLUESSEL, code); } catch {}
+}
+function laenderOptionen(aktiv) {
+  let namen = null;
+  try { namen = new Intl.DisplayNames(["de"], { type: "region" }); } catch {}
+  const liste = LAENDER_CODES.map((c) => ({ c, n: (namen && namen.of(c)) || c }))
+    .sort((a, b) => (a.c === "DE" ? -1 : b.c === "DE" ? 1 : a.n.localeCompare(b.n, "de")));
+  return liste.map((l) => `<option value="${l.c}"${l.c === aktiv ? " selected" : ""}>${esc(l.n)}</option>`).join("");
+}
 
 /* ---------- Hilfsfunktionen ---------- */
 const preisFormat = new Intl.NumberFormat("de-DE", { style: "currency", currency: SHOP.waehrung });
 const preis = (wert) => preisFormat.format(wert);
 const findeProdukt = (id) => PRODUKTE.find((p) => p.id === id);
-const esc = (s) => String(s).replace(/[&<>"']/g, (z) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[z]));
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, (z) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[z]));
+}
 
 function produktBild(p) {
   if (p.bild) return `<img src="${esc(p.bild)}" alt="${esc(p.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover">`;
@@ -106,7 +138,7 @@ function baueLayout() {
           <div class="fuss__raster">
             <div>
               <h3>${esc(SHOP.name)}</h3>
-              <p>${esc(SHOP.adresse)}<br><a href="mailto:${esc(SHOP.email)}">${esc(SHOP.email)}</a></p>
+              <p><a href="mailto:${esc(SHOP.email)}">${esc(SHOP.email)}</a></p>
             </div>
             <div>
               <h3>Shop</h3>
@@ -119,7 +151,7 @@ function baueLayout() {
             <div>
               <h3>Info</h3>
               <ul>
-                <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="ueber-uns.html">Über Fayzaris Arena</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
                 <li><a href="impressum.html">Impressum</a></li>
                 <li><a href="datenschutz.html">Datenschutz</a></li>
@@ -137,7 +169,6 @@ function baueLayout() {
   document.querySelectorAll("[data-shopname]").forEach((el) => { el.textContent = SHOP.name; });
   document.querySelectorAll("[data-shop-email]").forEach((el) => { el.textContent = SHOP.email; el.href = "mailto:" + SHOP.email; });
   document.querySelectorAll("[data-shop-telefon]").forEach((el) => { el.textContent = SHOP.telefon; });
-  document.querySelectorAll("[data-shop-adresse]").forEach((el) => { el.textContent = SHOP.adresse; });
   wkZahlAktualisieren();
 }
 
@@ -208,11 +239,11 @@ function baueProduktseite() {
           </div>
         </div>
         <button class="btn" style="width:100%" data-in-warenkorb>In den Warenkorb</button>
-        <p class="leise" style="font-size:.9rem;margin-top:.75rem">Gemäß § 19 UStG keine Umsatzsteuer, zzgl. Versand · Lieferzeit 2–4 Werktage</p>
+        <p class="leise" style="font-size:.9rem;margin-top:.75rem">Gemäß § 19 UStG keine Umsatzsteuer · Versand nach Deutschland kostenlos, weltweit ${preis(SHOP.versandkosten)}</p>
         <div class="produkt__details">
           <details open><summary>Beschreibung</summary><p>Hier steht eine ausführliche Beschreibung: Material, Maße, Besonderheiten und Einsatzzweck des Produkts.</p></details>
-          <details><summary>Versand &amp; Rückgabe</summary><p>Versand innerhalb von 2–4 Werktagen. Kostenloser Versand ab ${preis(SHOP.versandkostenfreiAb)}. 30 Tage Rückgaberecht.</p></details>
-          <details><summary>Pflegehinweise</summary><p>Platzhalter für Pflege- oder Gebrauchshinweise.</p></details>
+          <details><summary>Versand &amp; Lieferzeit</summary><p>Versand nach Deutschland kostenlos, in alle anderen Länder ${preis(SHOP.versandkosten)}. Der Versand erfolgt von Montag bis Freitag. Bearbeitungszeit: fertige Artikel 1–3 Werktage, individuelle Produkte 3–9 Werktage je nach Auftragslage, digitale Produkte sofort nach Zahlungseingang per E-Mail. Dazu kommt die Versanddauer.</p></details>
+          <details><summary>Widerruf</summary><p>Es gilt ein gesetzliches Widerrufsrecht von 14 Tagen. Für individuell angefertigte und digitale Produkte gelten Ausnahmen, Einzelheiten stehen in der <a href="widerruf.html">Widerrufsbelehrung</a>.</p></details>
         </div>
       </div>
     </div>
@@ -256,8 +287,9 @@ function baueWarenkorb() {
         </div>`;
       return;
     }
+    const land = landLaden();
     const zwischensumme = posten.reduce((s, x) => s + findeProdukt(x.id).preis * x.menge, 0);
-    const versand = zwischensumme >= SHOP.versandkostenfreiAb ? 0 : SHOP.versandkosten;
+    const versand = land === SHOP.versandFreiLand ? 0 : SHOP.versandkosten;
 
     ziel.innerHTML = `
       <div class="wk-layout">
@@ -285,6 +317,10 @@ function baueWarenkorb() {
         </ul>
         <aside class="wk-summe">
           <h2 style="font-size:1.3rem">Zusammenfassung</h2>
+          <div class="feld" style="margin:1rem 0">
+            <label for="land">Lieferland</label>
+            <select id="land" data-land style="width:100%;font:inherit;padding:.6em;border:1px solid var(--farbe-rand);border-radius:var(--radius);background:var(--farbe-hintergrund);color:var(--farbe-text)">${laenderOptionen(land)}</select>
+          </div>
           <div class="wk-zeile"><span>Zwischensumme</span><span>${preis(zwischensumme)}</span></div>
           <div class="wk-zeile"><span>Versand</span><span>${versand ? preis(versand) : "kostenlos"}</span></div>
           <div class="wk-zeile wk-zeile--gesamt"><span>Gesamt</span><span>${preis(zwischensumme + versand)}</span></div>
@@ -309,6 +345,11 @@ function baueWarenkorb() {
     zeichne();
   });
   ziel.addEventListener("change", (e) => {
+    if (e.target.matches("select[data-land]")) {
+      if (LAENDER_CODES.includes(e.target.value)) landSpeichern(e.target.value);
+      zeichne();
+      return;
+    }
     if (!e.target.matches("input[data-i]")) return;
     const posten = wkLaden().filter((x) => findeProdukt(x.id));
     posten[+e.target.dataset.i].menge = Math.max(1, parseInt(e.target.value, 10) || 1);

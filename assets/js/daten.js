@@ -6,13 +6,13 @@
    ========================================================= */
 const SHOP = {
   name: "Fayzaris-Arena",
-  ankuendigung: "Kostenloser Versand ab 50 € · 30 Tage Rückgabe",
+  ankuendigung: "Versand nach Deutschland kostenlos · weltweit 5,90 €",
   email: "fayzaris@outlook.de",
   telefon: "+49 176 32699321",
   adresse: "Britzer Damm 148, 12347 Berlin",
   waehrung: "EUR",
-  versandkosten: 4.95,
-  versandkostenfreiAb: 50
+  versandkosten: 5.90,
+  versandFreiLand: "DE"
 };
 
 const PRODUKTE = [
