@@ -135,12 +135,8 @@ function baueLayout() {
     fuss.outerHTML = `
       <footer class="fuss">
         <div class="container">
-          <div class="fuss__raster">
-            <div>
-              <h3>${esc(SHOP.name)}</h3>
-              <p><a href="mailto:${esc(SHOP.email)}">${esc(SHOP.email)}</a></p>
-            </div>
-            <div>
+          <div class="fuss__raster" style="grid-template-columns:1fr 1fr">
+            <div style="grid-column:auto">
               <h3>Shop</h3>
               <ul>
                 <li><a href="produkte.html">Alle Produkte</a></li>
@@ -157,7 +153,6 @@ function baueLayout() {
                 <li><a href="datenschutz.html">Datenschutz</a></li>
                 <li><a href="agb.html">AGB</a></li>
                 <li><a href="widerruf.html">Widerrufsbelehrung</a></li>
-                <li><a class="btn btn--klein" style="background:var(--farbe-akzent);border-color:var(--farbe-akzent);color:#000;margin-top:.4rem" href="widerruf.html#widerrufen">Vertrag widerrufen</a></li>
               </ul>
             </div>
           </div>
