@@ -125,7 +125,7 @@ function baueLayout() {
               </ul>
             </div>
           </div>
-          <div class="fuss__unten">Fayzaris-Arena · Alle Preise inkl. MwSt.</div>
+          <div class="fuss__unten">Fayzaris-Arena · Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</div>
         </div>
       </footer>`;
   }
@@ -204,7 +204,7 @@ function baueProduktseite() {
           </div>
         </div>
         <button class="btn" style="width:100%" data-in-warenkorb>In den Warenkorb</button>
-        <p class="leise" style="font-size:.9rem;margin-top:.75rem">inkl. MwSt., zzgl. Versand · Lieferzeit 2–4 Werktage</p>
+        <p class="leise" style="font-size:.9rem;margin-top:.75rem">Gemäß § 19 UStG keine Umsatzsteuer, zzgl. Versand · Lieferzeit 2–4 Werktage</p>
         <div class="produkt__details">
           <details open><summary>Beschreibung</summary><p>Hier steht eine ausführliche Beschreibung: Material, Maße, Besonderheiten und Einsatzzweck des Produkts.</p></details>
           <details><summary>Versand &amp; Rückgabe</summary><p>Versand innerhalb von 2–4 Werktagen. Kostenloser Versand ab ${preis(SHOP.versandkostenfreiAb)}. 30 Tage Rückgaberecht.</p></details>
@@ -284,7 +284,7 @@ function baueWarenkorb() {
           <div class="wk-zeile"><span>Zwischensumme</span><span>${preis(zwischensumme)}</span></div>
           <div class="wk-zeile"><span>Versand</span><span>${versand ? preis(versand) : "kostenlos"}</span></div>
           <div class="wk-zeile wk-zeile--gesamt"><span>Gesamt</span><span>${preis(zwischensumme + versand)}</span></div>
-          <p class="leise" style="font-size:.85rem">inkl. MwSt.</p>
+          <p class="leise" style="font-size:.85rem">Gemäß § 19 UStG keine Umsatzsteuer.</p>
           <div class="hinweis">Die Kasse ist noch nicht eingerichtet. Zahlungsarten werden später ergänzt.</div>
           <button class="btn" style="width:100%" disabled>Zur Kasse</button>
         </aside>
